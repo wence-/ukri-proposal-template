@@ -1,0 +1,95 @@
+% -*- TeX-engine: luatex -*-
+\documentclass[
+squeezespace=false,
+showframe=false,
+a4paper,
+fontsize=11pt]{ukriproposal}
+
+\usepackage[l2tabu, orthodox]{nag}
+
+% biblatex setup
+\usepackage[
+% dois
+doi=true,
+% no arxiv id
+eprint=false,
+% No URLs
+url=false,
+% numeric
+style=authoryear,
+% Sort by name then year
+sorting=nyt,
+defernumbers=true,
+% no isbn
+isbn=false,
+% Max names in text citation
+% maxcitenames=3,
+% Max names in reference section
+% maxbibnames=1,
+% Use biber not bibtex for citation management
+backend=biber,
+% A.N. Author
+giveninits=true,
+uniquename=init]{biblatex}
+% If you need to cull parts of the bibliography entries...
+% \AtEveryBibitem{\clearfield{title}}
+% \AtEveryBibitem{\clearfield{pages}}
+\setlength{\bibitemsep}{0pt}
+
+% This defines a new "check" command to the printbibliography so that
+% we can have separate bibliographies but the papers are unique across
+% the document. From
+% https://tex.stackexchange.com/a/517234
+\usepackage{bibonce}
+
+% Use this bibliography
+% \addbibresource{refs.bib}
+
+% citet/citep are natbib specific.
+\def\citet{\textcite}
+\def\citep{\parencite}
+
+\usepackage{cleveref}
+
+\begin{document}
+
+% This introduces a segment of the document in which we're gathering
+% references
+\begin{refsegment}
+
+\maketitle
+
+\section*{Track record}
+
+\section*{Our code}
+
+\subsection*{References}
+% Print the bibliography for this segment
+\printbibliography[heading=none,
+resetnumbers=false,
+segment=\therefsegment,
+check=onlynew]
+% We're done gathering
+\end{refsegment}
+
+\newpage
+
+\maketitle
+
+\begin{refsegment}
+% Methodology and approach.
+
+% Risks and mitigation strategies.
+
+\section{Introduction and project aims}
+
+\subsection*{Further references}
+% Print the bibliography for this segment
+% check=onlynew means we don't print things we saw in the previous
+% segments.
+\printbibliography[heading=none,
+resetnumbers=false,
+segment=\therefsegment,
+check=onlynew]
+\end{refsegment}
+\end{document}

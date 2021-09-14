@@ -1,0 +1,15 @@
+% This defines a new "check" command to the printbibliography so that
+% we can have separate bibliographies but the papers are unique across
+% the document. From
+% https://tex.stackexchange.com/a/517234
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{bibonce}[Print papers once with multiple bibliographies]
+\RequirePackage{biblatex}
+\AtEveryCitekey{%
+  \ifcsundef{blx@entry@refsegment@\the\c@refsection @\thefield{entrykey}}
+  {\csnumgdef{blx@entry@refsegment@\the\c@refsection @\thefield{entrykey}}{\the\c@refsegment}}
+  {}}
+\defbibcheck{onlynew}{%
+  \ifnumless{0\csuse{blx@entry@refsegment@\the\c@refsection @\thefield{entrykey}}}{\the\c@refsegment}
+  {\skipentry}
+  {}}
