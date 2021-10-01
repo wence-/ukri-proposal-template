@@ -40,7 +40,15 @@
 
 % Font choice
 \RequirePackage{fontspec}
-\setmainfont{Arial}
+\IfFontExistsTF{Arial}{%
+  \setmainfont{Arial}
+}{
+  \IfFontExistsTF{Liberation Sans}{%
+    \setmainfont{Liberation Sans}
+  }{
+    \ClassError{ukriproposal}{Could not find suitable font}{You need to have Arial or equivalent (e.g. liberation sans) installed}
+  }
+}
 
 % A little bit better formatting (normally saves a few lines)
 \RequirePackage[

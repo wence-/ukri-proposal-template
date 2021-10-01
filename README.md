@@ -5,7 +5,10 @@ LaTeX class for UKRI proposals.
 Requires use of [lualatex](http://www.luatex.org) or
 [xelatex](https://tug.org/xetex/) since it uses the
 [fontspec](https://ctan.org/pkg/fontspec?lang=en) package to use the
-Arial font (as preferred by UKRI).
+Arial font (as preferred by UKRI). If you don't have Arial, the class
+falls back to using [Liberation
+Sans](https://en.wikipedia.org/wiki/Liberation_fonts) which is
+metric-compatible with Arial.
 
 The class is a small wrapper around the
 [KOMA-script](https://komascript.de) `scrartcl` class.
