@@ -42,9 +42,11 @@
 \RequirePackage{fontspec}
 \IfFontExistsTF{Arial}{%
   \setmainfont{Arial}
+  \setsansfont{Arial}
 }{
   \IfFontExistsTF{Liberation Sans}{%
     \setmainfont{Liberation Sans}
+    \setsansfont{Liberation Sans}
   }{
     \ClassError{ukriproposal}{Could not find suitable font}{You need to have Arial or equivalent (e.g. liberation sans) installed}
   }
